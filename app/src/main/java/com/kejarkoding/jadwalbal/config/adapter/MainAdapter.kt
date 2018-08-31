@@ -12,7 +12,7 @@ import com.kejarkoding.jadwalbal.R.id.*
 import com.kejarkoding.jadwalbal.model.Schedules
 import org.jetbrains.anko.*
 
-class MainAdapter(private val context: Context, private val teams: List<Schedules>)
+class MainAdapter(private val context: Context, private val teams: List<Schedules>, private val listener: (Schedules) -> Unit)
     : RecyclerView.Adapter<TeamViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TeamViewHolder {
@@ -22,7 +22,7 @@ class MainAdapter(private val context: Context, private val teams: List<Schedule
     override fun getItemCount(): Int = teams.size
 
     override fun onBindViewHolder(holder: TeamViewHolder, position: Int) {
-        holder.bindItem(teams[position])
+        holder.bindItem(teams[position],listener)
     }
 
 
@@ -36,12 +36,15 @@ class TeamViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     val inthomee :TextView = view.findViewById(inthome)
     val dateevente : TextView= view.findViewById(dateevent)
 
-    fun bindItem(s: Schedules) {
+    fun bindItem(s: Schedules, listener: (Schedules) -> Unit) {
         intawaye.text = s.intAwayScore
         inthomee.text = s.intHomeScore
         dateevente.text = s.dateevene
         strhomee.text = s.strhomeTeam
         strawaye.text = s.strAwayTeam
+        itemView.setOnClickListener{
+            listener(s)
+        }
 
     }
 }

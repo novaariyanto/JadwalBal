@@ -28,16 +28,15 @@ class MainActivity : AppCompatActivity(), MainView {
     var schedulePrevMatche: MutableList<Schedules> = mutableListOf()
     lateinit var presenter: MainPresenter
     lateinit var adapter: MainAdapter
-
     private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home -> {
-                i=0
+                i = 0
                 getscghedule()
                 return@OnNavigationItemSelectedListener true
             }
             R.id.navigation_dashboard -> {
-                i=1
+                i = 1
                getscghedule()
                 return@OnNavigationItemSelectedListener true
             }
@@ -64,10 +63,41 @@ class MainActivity : AppCompatActivity(), MainView {
         val gson = Gson()
         presenter = MainPresenter(this, request, gson)
 
-        adapter = MainAdapter(this,schedulePrevMatche)
+        adapter = MainAdapter(this,schedulePrevMatche){
+            startActivity<DetailActivity>(
+                    "dateevent" to "${it.dateevene}",
+                    "strhometeam" to "${it.strhomeTeam}",
+                    "strawayteam" to "${it.strAwayTeam}",
+
+                    "inthomescore" to "${it.dateevene}",
+                    "intawayscore" to "${it.strhomeTeam}",
+
+                    "inhomeshots" to "${it.inthomeshots}",
+                    "inawayshots" to "${it.intawayshots}",
+
+                    "strhomegoaldetail" to "${it.strhomegoaldetails}",
+                    "strawaygoaldetail" to "${it.strawaygoaldetails}",
+
+                    "strhomelineupgoalkepeer" to "${it.strhomelineupgoalkeeper}",
+                    "strawaylineupgoalkepeer" to "${it.strawaylinupgoalkeeper}",
+
+                    "strhomelineupdefense" to "${it.strhomelineupdefense}",
+                    "strhomelineupdefense" to "${it.strawaylineupdefense}",
+
+                    "strhomelineupmidfield" to "${it.strhomelineupmidfield}",
+                    "strawaylineupmidfield" to "${it.strawaylineupmidfield}",
+
+                    "strhomelineupforward" to "${it.strhomelineupforward}",
+                    "strawaylineupforward" to "${it.strawaylineupforward}",
+
+                    "strhomelineupsubstitutes" to "${it.strhomelineupsubstitutes}",
+                    "strawaylineupsubstitutes" to "${it.strawaylineupsubstitutes}"
+            )
+        }
 
         schedulelist.layoutManager = LinearLayoutManager(ctx)
         schedulelist.adapter = adapter
+
         getscghedule()
 
         swipeRefresh.onRefresh {
@@ -77,9 +107,11 @@ class MainActivity : AppCompatActivity(), MainView {
 
     }
      fun getscghedule(){
-            if(i==0){
+            if(i == 0){
+                presenter.getSchedulePrevMatch("4328")
+            }else if(i == 1){
                 presenter.getScheduleNextMAtch("4328")
-            }else if(i==1){
+            }else{
                 presenter.getSchedulePrevMatch("4328")
             }
 
