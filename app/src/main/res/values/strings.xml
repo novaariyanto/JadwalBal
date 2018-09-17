@@ -1,19 +1,11 @@
 <resources>
-    <string name="app_name">JadwalBal</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
-    <string name="vs">Vs</string>
-    <string name="goal">Goal</string>
-    <string name="shots">Shots</string>
-    <string name="lineups">LineUps</string>
-    <string name="golkepeer">Golkepeer</string>
-    <string name="defense">Defense</string>
-    <string name="midfield">MidField</string>
-    <string name="forward">Forward</string>
-    <string name="substitutes">Substitutes</string>
+    <string name="app_name">Football Apps</string>
+    <string name="vs">vs</string>
+    <string name="weight">Weight</string>
+    <string name="height">Height</string>
+    <string name="data_not_available">Data not available</string>
+    <string name="search">Search</string>
+    <string name="matches">Matches</string>
     <string name="teams">Teams</string>
-    <string name="favorite">Favorite</string>
-    <string name="last_match">Last Match</string>
-    <string name="next_match">Next Match</string>
+    <string name="favorites">Favorites</string>
 </resources>
